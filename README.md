@@ -1,4 +1,5 @@
 # project-cpp-mines
 C/C++ Project
 
-Ceci est l'autre test
+Ceci est un test git
+
