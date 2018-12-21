@@ -13,6 +13,7 @@ class Card
 	public:
 	Card(std::string rectoCard, std::string versoCard);
 	void displayCard();
+	void swapCard();
 
 };
 
