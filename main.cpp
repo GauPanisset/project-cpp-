@@ -7,6 +7,7 @@ int main()
 {
 	Card carte("Paris","France");
 	carte.displayCard();
+	carte.swapCard();
 
 	return 0;
 }
