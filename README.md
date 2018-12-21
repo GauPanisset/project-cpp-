@@ -1,2 +1,2 @@
-# project-cpp-
+# project-cpp-mines
 C/C++ Project
