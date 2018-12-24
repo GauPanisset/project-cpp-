@@ -1,6 +1,6 @@
 #include "card.h"
 #include <iostream>
-#include <cstdio>
+
 
 using namespace std;
 
@@ -39,5 +39,7 @@ void Card::swapCard()
 		visibleFace = "recto";
 	}
 	Card::displayCard();
+	cout<<"Appuyer sur Entree pour tirer une nouvelle carte";
+	while(getchar() != '\n');
 
 }
