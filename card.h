@@ -12,8 +12,8 @@ class Card
 	
 	public:
 	Card(std::string rectoCard, std::string versoCard);
-	void displayCard();
-	void swapCard();
+	void displayCard(); // Permet d afficher la carte
+	void swapCard(); // Permet de retourner la carte
 
 };
 
