@@ -26,14 +26,14 @@ int Play::whichBox()
 		box = boxes;
 		for (int i=0; i<3*numberOfCards-1; i++)
 		{	
-			string lignes;
-			getline(my_file7,lignes);
+			string lines;
+			getline(my_file7,lines);
 			if (i%3 == 2)
 			{
-				int ligne = stoi(lignes);
-				if (ligne<box)
+				int line = stoi(lines);
+				if (line<box)
 				{
-					box = ligne;
+					box = line;
 				}			
 			}
 		}
@@ -42,12 +42,25 @@ int Play::whichBox()
 	return box;
 }
 
-/*void Play::drawCard()
+Card Play::drawCard()
 {
-	Card playableCard;
-
+	int box = Play::whichBox();
+	ifstream my_file8("Cards.txt");
+	string line1;
+	string line2;
+	string boxTempStr;
+	int boxTemp = 0;
+	while (boxTemp != box)
+	{
+		getline(my_file8, line1);
+		getline(my_file8, line2);
+		getline(my_file8, boxTempStr);
+		boxTemp = stoi(boxTempStr);
+	}
+	Card playableCard(line1, line2);
+	return playableCard;
 }
-
+/*
 void Play::run()
 {
 
