@@ -2,6 +2,7 @@
 #define DEF_PARTIE
 
 #include <string>
+#include "card.h"
 
 class Play
 {
@@ -12,7 +13,7 @@ class Play
 
 	public:
 	Play(int game_boxes, std::string game_mod);
-	//void drawCard(); Tire une carte
+	Card drawCard(); //Tire une carte
 	//void replaceACard(); Replacer une carte dans la bonne case
 	//void run();  Lance la partie
 	int whichBox(); //Renvoie dans quelle case jouer
