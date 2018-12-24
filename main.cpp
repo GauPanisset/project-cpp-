@@ -26,6 +26,7 @@ int main()
 		cout<<"3. Creer Cartes"<<endl;
 		cout<<"4. Quitter"<<endl;
 		cin>>choice;
+		cin.ignore();
 		
 		if (choice == 1)
 		{
@@ -37,6 +38,9 @@ int main()
 			my_file1.close();
 			Play play(number_boxes, game_mode);
 			int box = play.whichBox();
+			Card playCard = play.drawCard();
+			playCard.displayCard();
+			playCard.swapCard();
 		}
 		
 				if (choice == 2)
