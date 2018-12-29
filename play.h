@@ -14,11 +14,10 @@ class Play
 	public:
 	Play(int game_boxes, std::string game_mod);
 	Card drawCard(); //Tire une carte
-	//void replaceACard(); Replacer une carte dans la bonne case
-	//void run();  Lance la partie
+	void replaceACard(int box, Card playableCard); //Replacer une carte dans la bonne case
+	//void run();  //Lance la partie
 	int whichBox(); //Renvoie dans quelle case jouer
 
 };
-
 
 #endif
