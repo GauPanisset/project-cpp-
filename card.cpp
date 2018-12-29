@@ -1,4 +1,5 @@
 #include "card.h"
+#include "play.h"
 #include <iostream>
 
 
@@ -13,7 +14,6 @@ Card::Card(string rectoCard, string versoCard)
 
 void Card::displayCard()
 {
-
 	if (visibleFace == "recto")
 	{
 		cout<<recto<<endl;
@@ -22,13 +22,11 @@ void Card::displayCard()
 	{
 		cout<<verso<<endl;
 	}
-	
-	
 }
 
 void Card::swapCard()
 {
-	cout<<"Appuyer sur Entree pour retourner la carte et vérifiez votre réponse";
+	cout<<"Appuyer sur Entree pour retourner la carte et verifiez votre reponse";
 	while(getchar() != '\n'); //Attendre que l'utilisateur ai appuye sur Entree pour retourner la carte
 	if (visibleFace == "recto")
 	{
@@ -39,7 +37,9 @@ void Card::swapCard()
 		visibleFace = "recto";
 	}
 	Card::displayCard();
-	cout<<"Appuyer sur Entree pour tirer une nouvelle carte";
-	while(getchar() != '\n');
+}
 
+string Card::getRecto()
+{
+    return recto;
 }
