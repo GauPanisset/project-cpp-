@@ -8,9 +8,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     pPlayWindow = new PlayWindow();
+    pCreateWindow = new CreateWindow();
 
     QObject::connect(ui->playButton, &QPushButton::clicked, this, &MainWindow::switchPlayWindow);
     QObject::connect(pPlayWindow, &PlayWindow::returnToMainWindow, this, &MainWindow::switchPlayWindow);
+
+    QObject::connect(ui->createButton, &QPushButton::clicked, this, &MainWindow::switchCreateWindow);
+    QObject::connect(pCreateWindow, &CreateWindow::returnToMainWindow, this, &MainWindow::switchCreateWindow);
 }
 
 MainWindow::~MainWindow()
@@ -27,6 +31,19 @@ void MainWindow::switchPlayWindow()
     }
     else {
         pPlayWindow->hide();
+        this->show();
+    }
+}
+
+void MainWindow::switchCreateWindow()
+{
+    if (this->isVisible())
+    {
+        this->hide();
+        pCreateWindow->show();
+    }
+    else {
+        pCreateWindow->hide();
         this->show();
     }
 }

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "playwindow.h"
+#include "createwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,10 +20,13 @@ public:
 private slots:
     //Pour passer sur la fenêtre de jeu.
     void switchPlayWindow();
+    //Pour passer sur la fenêtre de création.
+    void switchCreateWindow();
 
 private:
     Ui::MainWindow *ui;
     PlayWindow *pPlayWindow;
+    CreateWindow *pCreateWindow;
 };
 
 #endif // MAINWINDOW_H

@@ -34,7 +34,8 @@ SOURCES += \
         tinyxmlerror.cpp \
         tinyxmlparser.cpp \
         playwindow.cpp \
-        cardbutton.cpp
+        cardbutton.cpp \
+    createwindow.cpp
 
 
 HEADERS += \
@@ -44,11 +45,13 @@ HEADERS += \
         tinystr.h \
         tinyxml.h \
         playwindow.h \
-        cardbutton.h
+        cardbutton.h \
+    createwindow.h
 
 FORMS += \
         mainwindow.ui \
-        playwindow.ui
+        playwindow.ui \
+        createwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
