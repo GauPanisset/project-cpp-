@@ -28,15 +28,27 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         play.cpp \
-        card.cpp
+        card.cpp \
+        tinystr.cpp \
+        tinyxml.cpp \
+        tinyxmlerror.cpp \
+        tinyxmlparser.cpp \
+        playwindow.cpp \
+        cardbutton.cpp
+
 
 HEADERS += \
         mainwindow.h \
         play.h \
-        card.h
+        card.h \
+        tinystr.h \
+        tinyxml.h \
+        playwindow.h \
+        cardbutton.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+        playwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

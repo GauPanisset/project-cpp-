@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>PlayWindow</class>
+ <widget class="QMainWindow" name="PlayWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,33 +11,33 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>PlayWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="createButton">
+   <widget class="CardButton" name="cardButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>100</y>
-      <width>114</width>
-      <height>32</height>
+      <x>73</x>
+      <y>40</y>
+      <width>261</width>
+      <height>161</height>
      </rect>
     </property>
     <property name="text">
-     <string>Create</string>
+     <string>PushButton</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="playButton">
+   <widget class="QPushButton" name="menuButton">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>100</y>
-      <width>114</width>
+      <x>0</x>
+      <y>0</y>
+      <width>31</width>
       <height>32</height>
      </rect>
     </property>
     <property name="text">
-     <string>Play</string>
+     <string>=</string>
     </property>
    </widget>
   </widget>
@@ -62,6 +62,13 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>CardButton</class>
+   <extends>QPushButton</extends>
+   <header>cardbutton.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

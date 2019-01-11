@@ -9,37 +9,21 @@ Card::Card(string rectoCard, string versoCard)
 {
 	recto = rectoCard;
 	verso = versoCard;
-	visibleFace = "recto";
+	rectoVisible = true;
+    
 }
 
-void Card::displayCard()
+void Card::swap()
 {
-	if (visibleFace == "recto")
-	{
-		cout<<recto<<endl;
-	}
-	else
-	{
-		cout<<verso<<endl;
-	}
+	rectoVisible = !rectoVisible;
 }
 
-void Card::swapCard()
+string Card::getVisibleFace() const
 {
-	cout<<"Appuyer sur Entree pour retourner la carte et verifiez votre reponse";
-	while(getchar() != '\n'); //Attendre que l'utilisateur ai appuye sur Entree pour retourner la carte
-	if (visibleFace == "recto")
-	{
-		visibleFace = "verso";
-	}
-	else
-	{
-		visibleFace = "recto";
-	}
-	Card::displayCard();
+    return rectoVisible ? recto : verso;
 }
 
-string Card::getRecto()
+bool operator<(const Card &c1, const Card &c2)
 {
-    return recto;
+    return c1.getVisibleFace() < c2.getVisibleFace();
 }

@@ -1,23 +1,26 @@
 #ifndef DEF_PARTIE
 #define DEF_PARTIE
 
-#include <string>
 #include "card.h"
+#include <string>
+#include <map>
+#include <iostream>
+#include <fstream>
 
 class Play
 {
 
 	private:
-	int boxes;
-	std::string mod;
+    int mode;
+    int currentSubbox;
+    std::map <Card, int> box;
+    std::string name;
 
 	public:
-	Play(int game_boxes, std::string game_mod);
-	Card drawCard(); //Tire une carte
-	void replaceACard(int box, Card playableCard); //Replacer une carte dans la bonne case
-	//void run();  //Lance la partie
-	int whichBox(); //Renvoie dans quelle case jouer
-
+    Play(std::string name, Card cardsList[],int numberOfCards, int mode);
+    Play(std::string name);
+    Card* drawCard(); //Sélectionne une carte dans la boite courante et la charge.
+    void replaceCard(Card card); //Replace une carte dans la bonne subbox.
 };
 
 #endif

@@ -8,14 +8,14 @@ class Card
 	private:
 	std::string recto;
 	std::string verso;
-	std::string visibleFace; // Pour savoir quel cote est visible
+    bool rectoVisible; // Pour savoir quel cote est visible
 
 	public:
-	Card(std::string rectoCard, std::string versoCard);
-	void displayCard(); // Permet d afficher la carte
-	void swapCard(); // Permet de retourner la carte
-	std::string getRecto();
-
+    Card(std::string rectoCard, std::string versoCard);     //Contient le code qui sauvegarde les cartes créées.
+    void swap(); // Permet de retourner la carte
+    std::string getVisibleFace() const; //Retourne le texte de la face visible.
 };
+
+bool operator<(const Card &c1, const Card &c2);
 
 #endif
