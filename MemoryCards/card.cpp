@@ -1,59 +1,7 @@
 #include "card.h"
+#include <fstream>
 
 using namespace std;
-
-Card::Card(string rectoCard, string versoCard)
-{
-	recto = rectoCard;
-	verso = versoCard;
-    rectoVisible = true;
-}
-
-Card::Card(int i)
-{
-
-    TiXmlDocument doc("cards.xml");
-    if (doc.LoadFile())
-    {
-        TiXmlElement *root = doc.RootElement();
-        TiXmlElement *cardEl = root->FirstChildElement();
-
-        int otherId = 0;
-        cardEl->QueryIntAttribute("id", &otherId);
-        while(cardEl && otherId != i)
-        {
-            cardEl->QueryIntAttribute("id", &otherId);
-            cardEl = root->NextSiblingElement();
-        }
-
-        id = i;
-        TiXmlElement *rectoEl = cardEl->FirstChildElement("recto");
-        TiXmlElement *versoEl = cardEl->FirstChildElement("verso");
-
-        recto = rectoEl->GetText();
-        verso = versoEl->GetText();
-        rectoVisible = true;
-    }
-    else
-    {
-        cout << "Error: cards.xml can't be loaded" << endl;
-    }
-}
-
-void Card::swap()
-{
-	rectoVisible = !rectoVisible;
-}
-
-string Card::getVisibleFace() const
-{
-    return rectoVisible ? recto : verso;
-}
-
-bool operator<(const Card &c1, const Card &c2)
-{
-    return c1.getVisibleFace() < c2.getVisibleFace();
-}
 
 //Retourne le dernier id ou 0 si il n'existe pas.
 int getLastId()
@@ -79,6 +27,66 @@ int getLastId()
     }
 }
 
+Card::Card(string rectoCard, string versoCard)
+{
+	recto = rectoCard;
+	verso = versoCard;
+    rectoVisible = true;
+    id = getLastId();
+}
+
+Card::Card(int i)
+{
+    TiXmlDocument doc("/Users/gauthierpanisset/Documents/Programmation/C++/project-cpp-mines/MemoryCards/save/cards.xml");
+    if (doc.LoadFile())
+    {
+        TiXmlElement *root = doc.RootElement();
+        TiXmlElement *cardEl = root->FirstChildElement();
+
+        int otherId = 0;
+        cardEl->QueryIntAttribute("id", &otherId);
+        while(cardEl && otherId != i)
+        {
+            cardEl->QueryIntAttribute("id", &otherId);
+            cardEl = cardEl->NextSiblingElement();
+        }
+
+        if (cardEl)
+        {
+            id = i;
+            TiXmlElement *rectoEl = cardEl->FirstChildElement("recto");
+            TiXmlElement *versoEl = cardEl->FirstChildElement("verso");
+
+            recto = rectoEl->GetText();
+            verso = versoEl->GetText();
+            rectoVisible = true;
+        }
+        else
+        {
+            cout<<"Error : Card not found"<<endl;
+        }
+
+    }
+    else
+    {
+        cout << "Error: cards.xml can't be loaded (" << doc.ErrorDesc() << ")" << endl;
+    }
+}
+
+void Card::swap()
+{
+	rectoVisible = !rectoVisible;
+}
+
+string Card::getVisibleFace() const
+{
+    return rectoVisible ? recto : verso;
+}
+
+bool operator<(const Card &c1, const Card &c2)
+{
+    return c1.getVisibleFace() < c2.getVisibleFace();
+}
 
 void Card::saveCard()
 {

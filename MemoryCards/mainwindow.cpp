@@ -28,7 +28,7 @@ void MainWindow::switchPlayWindow()
     {
         this->hide();
 
-        Card *cardList[3];
+        Card *cardList[3] = {nullptr, nullptr, nullptr};
         cardList[0] = new Card(1);
         cardList[1] = new Card(2);
         cardList[2] = new Card(3);

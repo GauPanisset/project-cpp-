@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SavedPlays>
+    <box number="1">
+        <card id="0" visible="0"/>
+        <card id="1" visible="0"/>
+        <card id="2" visible="0"/>
+        <card id="3" visible="0"/>
+    </box>
+    <box number="2">
+    </box>
+</SavedPlays>
