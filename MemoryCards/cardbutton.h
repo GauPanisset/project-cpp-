@@ -16,6 +16,9 @@ public:
 
     void setCard(Card *pc);
 
+private slots:
+    void swapCard();
+
 };
 
 #endif // CARDBUTTON_H

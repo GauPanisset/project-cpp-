@@ -1,15 +1,18 @@
 #include "playwindow.h"
 #include "ui_playwindow.h"
 
-PlayWindow::PlayWindow(QWidget *parent, Play *pp) :
+PlayWindow::PlayWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::PlayWindow)
 {
     ui->setupUi(this);
 
-    pCurrentPlay = pp;
+    pCardButton = new CardButton();
 
     QObject::connect(ui->menuButton, &QPushButton::clicked, this, &PlayWindow::toMainWindow);
+    QObject::connect(ui->yesButton, &QPushButton::clicked, this, &PlayWindow::yesAnswer);
+    QObject::connect(ui->maybeButton, &QPushButton::clicked, this, &PlayWindow::maybeAnswer);
+    QObject::connect(ui->noButton, &QPushButton::clicked, this, &PlayWindow::noAnswer);
 }
 
 PlayWindow::~PlayWindow()
@@ -22,6 +25,18 @@ void PlayWindow::toMainWindow()
     emit returnToMainWindow();
 }
 
-void PlayWindow::displayCard(Card *pc) {
+/*void PlayWindow::setCurrentCard(Card *pc)
+{
     pCurrentCard = pc;
+}*/
+
+void PlayWindow::setCurrentPlay(Play *pplay)
+{
+    pCurrentPlay = pplay;
 }
+
+void PlayWindow::yesAnswer() {pCurrentPlay->replaceCard(0);}
+
+void PlayWindow::maybeAnswer() {pCurrentPlay->replaceCard(1);}
+
+void PlayWindow::noAnswer() {pCurrentPlay->replaceCard(2);}

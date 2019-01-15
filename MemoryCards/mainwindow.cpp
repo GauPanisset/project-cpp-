@@ -27,7 +27,17 @@ void MainWindow::switchPlayWindow()
     if (this->isVisible())
     {
         this->hide();
+
+        Card *cardList[3];
+        cardList[0] = new Card(1);
+        cardList[1] = new Card(2);
+        cardList[2] = new Card(3);
+
+        Play *pPlay = new Play("testGame", cardList, 3, 0);
+        pPlayWindow->setCurrentPlay(pPlay);
+
         pPlayWindow->show();
+
     }
     else {
         pPlayWindow->hide();
