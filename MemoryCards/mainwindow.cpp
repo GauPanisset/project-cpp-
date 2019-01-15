@@ -15,6 +15,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QObject::connect(ui->createButton, &QPushButton::clicked, this, &MainWindow::switchCreateWindow);
     QObject::connect(pCreateWindow, &CreateWindow::returnToMainWindow, this, &MainWindow::switchCreateWindow);
+
+    ui->buttonImmediat->setChecked(true);
+    if(ui->buttonImmediat->isChecked())
+    {
+        ui->buttonDurable->setChecked(false);
+    }
+    else {
+        ui->buttonImmediat->setChecked(true);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -32,8 +41,14 @@ void MainWindow::switchPlayWindow()
         cardList[0] = new Card(1);
         cardList[1] = new Card(2);
         cardList[2] = new Card(3);
+        std::string gameMode;
+        //if (ui->tabSettings->currentIndex() == 0)
+        //{
+            Play *pPlay = new Play("testGame", cardList, 3, 0);
+       // }
+        //else {
 
-        Play *pPlay = new Play("testGame", cardList, 3, 0);
+       // }
         pPlayWindow->setCurrentPlay(pPlay);
 
         pPlayWindow->show();

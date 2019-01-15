@@ -1,0 +1,16 @@
+debug/main.o
+debug/mainwindow.o
+debug/play.o
+debug/card.o
+debug/tinystr.o
+debug/tinyxml.o
+debug/tinyxmlerror.o
+debug/tinyxmlparser.o
+debug/playwindow.o
+debug/cardbutton.o
+debug/createwindow.o
+debug/qrc_savefiles.o
+debug/moc_mainwindow.o
+debug/moc_playwindow.o
+debug/moc_cardbutton.o
+debug/moc_createwindow.o
