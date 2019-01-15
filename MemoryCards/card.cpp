@@ -1,18 +1,20 @@
 #include "card.h"
 #include <fstream>
 
+#define PATH "/Users/gauthierpanisset/Documents/Programmation/C++/project-cpp-mines/MemoryCards/save/cards.xml"
 using namespace std;
+
 
 //Retourne le dernier id ou 0 si il n'existe pas.
 int getLastId()
 {
-    TiXmlDocument doc("cards.xml");
+    TiXmlDocument doc(PATH);
     if (doc.LoadFile())
     {
         TiXmlElement *root = doc.RootElement();
         TiXmlElement *lastCard = root->LastChild("card")->ToElement();
         int id;
-        if (lastCard->QueryIntAttribute("id", &id))
+        if (lastCard->QueryIntAttribute("id", &id) == TIXML_SUCCESS)
         {
             return id;
         }
@@ -23,6 +25,7 @@ int getLastId()
     }
     else
     {
+        cout << "Error : cards.xml can't be loaded"<<endl;
         return 0;
     }
 }
@@ -32,12 +35,12 @@ Card::Card(string rectoCard, string versoCard)
 	recto = rectoCard;
 	verso = versoCard;
     rectoVisible = true;
-    id = getLastId();
+    id = getLastId() + 1;
 }
 
 Card::Card(int i)
 {
-    TiXmlDocument doc("/Users/gauthierpanisset/Documents/Programmation/C++/project-cpp-mines/MemoryCards/save/cards.xml");
+    TiXmlDocument doc(PATH);
     if (doc.LoadFile())
     {
         TiXmlElement *root = doc.RootElement();
@@ -90,7 +93,7 @@ bool operator<(const Card &c1, const Card &c2)
 
 void Card::saveCard()
 {
-    TiXmlDocument doc("cards.xml");
+    TiXmlDocument doc(PATH);
     if (doc.LoadFile())
     {
         TiXmlElement *root = doc.RootElement();
@@ -103,6 +106,7 @@ void Card::saveCard()
         card->LinkEndChild(rectoEl);
         card->LinkEndChild(versoEl);
         root->LinkEndChild(card);
+        doc.SaveFile(PATH);
     }
 }
 

@@ -1,36 +1,19 @@
 <?xml version="1.0" ?>
 <SavedCards>
     <card id="1">
-        <recto>
-            Paris
-        </recto>
-        <verso>
-            Capital France
-        </verso>
+        <recto>Paris</recto>
+        <verso>Capital France</verso>
     </card>
     <card id="2">
-        <recto>
-            Luxembourg
-        </recto>
-        <verso>
-            Capital Luxembourg
-        </verso>
+        <recto>Luxembourg</recto>
+        <verso>Capital Luxembourg</verso>
     </card>
     <card id="3">
-        <recto>
-            Berlin
-        </recto>
-        <verso>
-            Capital Allemagne
-        </verso>
+        <recto>Berlin</recto>
+        <verso>Capital Allemagne</verso>
     </card>
     <card id="4">
-        <recto>
-            Bruxelle
-        </recto>
-        <verso>
-            Capital Belgique
-        </verso>
+        <recto>Bruxelle</recto>
+        <verso>Capital Belgique</verso>
     </card>
 </SavedCards>
-
