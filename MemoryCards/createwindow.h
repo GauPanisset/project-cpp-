@@ -2,6 +2,7 @@
 #define CREATEWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
 #include "card.h"
 #include "play.h"
 
@@ -22,8 +23,11 @@ private:
 signals:
     void returnToMainWindow();
 
+
 public slots:
     void toMainWindow();
+    void createCard();
+
 };
 
 #endif // CREATEWINDOW_H
