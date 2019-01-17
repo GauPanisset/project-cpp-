@@ -23,14 +23,12 @@ private:
     Ui::PlayWindow *ui;
     CardButton *pCardButton;
 
-    //Card *pCurrentCard;
     Play *pCurrentPlay;
 
 signals:
     void returnToMainWindow();
 
 public slots:
-    //void setCurrentCard(Card *pc);
     void toMainWindow();
     //Slots permettant de replacer la carte après une action du joueur.
     void yesAnswer();

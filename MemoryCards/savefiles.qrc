@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file alias="cards.xml">save/cards.xml</file>
-        <file alias="plays.xml">save/plays.xml</file>
+        <file>save/cards.xml</file>
     </qresource>
 </RCC>

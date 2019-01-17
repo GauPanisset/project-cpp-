@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QDir>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -9,6 +10,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     pPlayWindow = new PlayWindow();
     pCreateWindow = new CreateWindow();
+
+    //Ceci permet de contourner les problèmes de Path liée build.
+    QDir relativePath = QDir::current();
+    while(relativePath.absolutePath().contains("/build-MemoryCards"))
+    {
+        std::cout<<relativePath.absolutePath().toStdString()<<std::endl;
+        relativePath.setCurrent("../");
+        relativePath = QDir::current();
+    }
 
     QObject::connect(ui->playButton, &QPushButton::clicked, this, &MainWindow::switchPlayWindow);
     QObject::connect(pPlayWindow, &PlayWindow::returnToMainWindow, this, &MainWindow::switchPlayWindow);

@@ -1,14 +1,14 @@
 #include "card.h"
-#include <fstream>
+#include <QDir>
 
-#define PATH "/Users/gauthierpanisset/Documents/Programmation/C++/project-cpp-mines/MemoryCards/save/cards.xml"
+#define MYPATH "/MemoryCards/save/cards.xml"
+
 using namespace std;
-
 
 //Retourne le dernier id ou 0 si il n'existe pas.
 int getLastId()
 {
-    TiXmlDocument doc(PATH);
+    TiXmlDocument doc(MYPATH);
     if (doc.LoadFile())
     {
         TiXmlElement *root = doc.RootElement();
@@ -40,9 +40,16 @@ Card::Card(string rectoCard, string versoCard)
 
 Card::Card(int i)
 {
-    TiXmlDocument doc(PATH);
+
+    QDir relativePath;
+    QString absolutePath = relativePath.absolutePath();
+    QString savePath(MYPATH);
+    absolutePath += savePath;
+
+    TiXmlDocument doc(absolutePath.toStdString().c_str());
     if (doc.LoadFile())
     {
+        cout<<"File "<<absolutePath.toStdString()<<" is open"<<endl;
         TiXmlElement *root = doc.RootElement();
         TiXmlElement *cardEl = root->FirstChildElement();
 
@@ -72,7 +79,7 @@ Card::Card(int i)
     }
     else
     {
-        cout << "Error: cards.xml can't be loaded (" << doc.ErrorDesc() << ")" << endl;
+        cout << "Error: "<< absolutePath.toStdString() <<" can't be loaded (" << doc.ErrorDesc() << ")" << endl;
     }
 }
 
@@ -93,7 +100,7 @@ bool operator<(const Card &c1, const Card &c2)
 
 void Card::saveCard()
 {
-    TiXmlDocument doc(PATH);
+    TiXmlDocument doc(MYPATH);
     if (doc.LoadFile())
     {
         TiXmlElement *root = doc.RootElement();
@@ -106,7 +113,7 @@ void Card::saveCard()
         card->LinkEndChild(rectoEl);
         card->LinkEndChild(versoEl);
         root->LinkEndChild(card);
-        doc.SaveFile(PATH);
+        doc.SaveFile(MYPATH);
     }
 }
 

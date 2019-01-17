@@ -25,11 +25,6 @@ void PlayWindow::toMainWindow()
     emit returnToMainWindow();
 }
 
-/*void PlayWindow::setCurrentCard(Card *pc)
-{
-    pCurrentCard = pc;
-}*/
-
 void PlayWindow::setCurrentPlay(Play *pplay)
 {
     pCurrentPlay = pplay;
