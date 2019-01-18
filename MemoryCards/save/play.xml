@@ -1,3 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SavedPlays>
+	<play name="Game1" mode="1" date="16/01/2019" step="2">
+		<box number="1">
+			<card id="1" visible="0"/>
+			<card id="2" visible="1"/>
+		</box>
+		<box number="2">
+			<card id="3" visible="0"/>
+		</box>
+		<box number="3">
+			<card id="4" visible="0"/>
+		</box>
+		<box number="4">
+		</box>
+		<box number="5">
+		</box>
+		<box number="6">
+		</box>
+		<box number="7">
+		</box>
+	</play>
+	<play name="Game2" mode="0" date="16/01/2019">
+		<box number="1">
+		</box>
+		<box number="2">
+			<card id="1" visible="0"/>
+			<card id="2" visible="0"/>
+			<card id="3" visible="1"/>
+		</box>
+		<box number="3">
+			<card id="4" visible="0"/>
+		</box>
+		<box number="4">
+		</box>
+		<box number="5">
+		</box>
+		<box number="6">
+		</box>
+		<box number="7">
+	</play>
 </SavedPlays>

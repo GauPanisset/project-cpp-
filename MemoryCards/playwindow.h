@@ -17,7 +17,7 @@ public:
     explicit PlayWindow(QWidget *parent = nullptr);
     ~PlayWindow();
 
-    void setCurrentPlay(Play *pplay);
+    void startPlay(Play *pplay);
 
 private:
     Ui::PlayWindow *ui;

@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QDir relativePath = QDir::current();
     while(relativePath.absolutePath().contains("/build-MemoryCards"))
     {
-        std::cout<<relativePath.absolutePath().toStdString()<<std::endl;
         relativePath.setCurrent("../");
         relativePath = QDir::current();
     }
@@ -59,7 +58,7 @@ void MainWindow::switchPlayWindow()
         //else {
 
        // }
-        pPlayWindow->setCurrentPlay(pPlay);
+        pPlayWindow->startPlay(pPlay);
 
         pPlayWindow->show();
 

@@ -1,5 +1,4 @@
 #include "card.h"
-#include <QDir>
 
 #define MYPATH "/MemoryCards/save/cards.xml"
 
@@ -8,7 +7,12 @@ using namespace std;
 //Retourne le dernier id ou 0 si il n'existe pas.
 int getLastId()
 {
-    TiXmlDocument doc(MYPATH);
+    QDir relativePath;
+    QString absolutePath = relativePath.absolutePath();
+    QString savePath(MYPATH);
+    absolutePath += savePath;
+
+    TiXmlDocument doc(absolutePath.toStdString().c_str());
     if (doc.LoadFile())
     {
         TiXmlElement *root = doc.RootElement();
@@ -40,7 +44,6 @@ Card::Card(string rectoCard, string versoCard)
 
 Card::Card(int i)
 {
-
     QDir relativePath;
     QString absolutePath = relativePath.absolutePath();
     QString savePath(MYPATH);
@@ -100,7 +103,12 @@ bool operator<(const Card &c1, const Card &c2)
 
 void Card::saveCard()
 {
-    TiXmlDocument doc(MYPATH);
+    QDir relativePath;
+    QString absolutePath = relativePath.absolutePath();
+    QString savePath(MYPATH);
+    absolutePath += savePath;
+
+    TiXmlDocument doc(absolutePath.toStdString().c_str());
     if (doc.LoadFile())
     {
         TiXmlElement *root = doc.RootElement();

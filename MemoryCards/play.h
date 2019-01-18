@@ -4,20 +4,27 @@
 #include "card.h"
 #include <string>
 #include <map>
+#include <set>
 #include <iostream>
-#include <fstream>
+#include <QDir>
+#include <time.h>
+#include <ctime>
 
 typedef std::map<Card*,int> Box;
+typedef std::set<Card*> CardSet;
+typedef struct tm Date;
 
 class Play
 {
 
 	private:
     int mode;
-    int currentSubbox;
+    int currentSubboxNumber;
+    CardSet cardNotSeen;
     Card *pCurrentCard;
     Box box;
     std::string name;
+    //Tableau permettant de savoir quels subbox on doit jouer.
 
 	public:
     Play(std::string name, Card *cardsList[], int numberOfCards, int mode);

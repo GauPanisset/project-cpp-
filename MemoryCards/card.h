@@ -5,7 +5,7 @@
 #include "tinyxml.h"
 #include "tinystr.h"
 #include <iostream>
-#include <QResource>
+#include <QDir>
 
 class Card
 {

@@ -25,9 +25,18 @@ void PlayWindow::toMainWindow()
     emit returnToMainWindow();
 }
 
-void PlayWindow::setCurrentPlay(Play *pplay)
+void PlayWindow::startPlay(Play *pplay)
 {
     pCurrentPlay = pplay;
+
+    Card *pc = pCurrentPlay->drawCard();
+    if (pc != nullptr) {
+        pCardButton->setCard(pc);
+    }
+    else
+    {
+       std::cout<<"Error: no cards"<<std::endl;
+    }
 }
 
 void PlayWindow::yesAnswer() {pCurrentPlay->replaceCard(0);}

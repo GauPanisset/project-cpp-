@@ -8,11 +8,13 @@ CardButton::CardButton(QWidget *parent) : QPushButton(parent)
 void CardButton::setCard(Card *pc)
 {
     pCard = pc;
+    std::cout<<"Card : "<<pCard->getVisibleFace()<<std::endl;
+    this->QPushButton::setText(QString::fromStdString(pCard->getVisibleFace()));
 }
 
 void CardButton::swapCard()
 {
     qDebug("Coucou");
     pCard->swap();
-    this->setText(QString::fromStdString(pCard->getVisibleFace()));
+    this->QPushButton::setText(QString::fromStdString(pCard->getVisibleFace()));
 }
