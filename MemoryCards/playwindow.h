@@ -19,11 +19,14 @@ public:
 
     void startPlay(Play *pplay);
 
+
 private:
     Ui::PlayWindow *ui;
-    CardButton *pCardButton;
 
     Play *pCurrentPlay;
+
+    void newTurn();
+    void switchEnabled();
 
 signals:
     void returnToMainWindow();

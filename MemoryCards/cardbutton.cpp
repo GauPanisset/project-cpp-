@@ -1,4 +1,5 @@
 #include "cardbutton.h"
+#include "playwindow.h"
 
 CardButton::CardButton(QWidget *parent) : QPushButton(parent)
 {
@@ -8,13 +9,11 @@ CardButton::CardButton(QWidget *parent) : QPushButton(parent)
 void CardButton::setCard(Card *pc)
 {
     pCard = pc;
-    std::cout<<"Card : "<<pCard->getVisibleFace()<<std::endl;
-    this->QPushButton::setText(QString::fromStdString(pCard->getVisibleFace()));
+    this->setText(QString::fromStdString(pCard->getVisibleFace()));
 }
 
 void CardButton::swapCard()
 {
-    qDebug("Coucou");
     pCard->swap();
-    this->QPushButton::setText(QString::fromStdString(pCard->getVisibleFace()));
+    this->setText(QString::fromStdString(pCard->getVisibleFace()));
 }

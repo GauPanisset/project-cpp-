@@ -7,12 +7,13 @@ PlayWindow::PlayWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    pCardButton = new CardButton();
-
     QObject::connect(ui->menuButton, &QPushButton::clicked, this, &PlayWindow::toMainWindow);
+
     QObject::connect(ui->yesButton, &QPushButton::clicked, this, &PlayWindow::yesAnswer);
     QObject::connect(ui->maybeButton, &QPushButton::clicked, this, &PlayWindow::maybeAnswer);
     QObject::connect(ui->noButton, &QPushButton::clicked, this, &PlayWindow::noAnswer);
+
+    QObject::connect(ui->cardButton, &QPushButton::clicked, this, &PlayWindow::switchEnabled);
 }
 
 PlayWindow::~PlayWindow()
@@ -28,19 +29,45 @@ void PlayWindow::toMainWindow()
 void PlayWindow::startPlay(Play *pplay)
 {
     pCurrentPlay = pplay;
+    newTurn();
 
+}
+
+void PlayWindow::newTurn()
+{
     Card *pc = pCurrentPlay->drawCard();
     if (pc != nullptr) {
-        pCardButton->setCard(pc);
+        ui->cardButton->setCard(pc);
     }
     else
     {
-       std::cout<<"Error: no cards"<<std::endl;
+       emit returnToMainWindow();
     }
 }
 
-void PlayWindow::yesAnswer() {pCurrentPlay->replaceCard(0);}
+void PlayWindow::switchEnabled()
+{
+    ui->cardButton->setEnabled(!ui->cardButton->isEnabled());
+    ui->yesButton->setEnabled(!ui->yesButton->isEnabled());
+    ui->maybeButton->setEnabled(!ui->maybeButton->isEnabled());
+    ui->noButton->setEnabled(!ui->noButton->isEnabled());
+}
 
-void PlayWindow::maybeAnswer() {pCurrentPlay->replaceCard(1);}
+void PlayWindow::yesAnswer()
+{
+    pCurrentPlay->replaceCard(0);
+    switchEnabled();
+    newTurn();
+}
 
-void PlayWindow::noAnswer() {pCurrentPlay->replaceCard(2);}
+void PlayWindow::maybeAnswer() {
+    pCurrentPlay->replaceCard(1);
+    switchEnabled();
+    newTurn();
+}
+
+void PlayWindow::noAnswer() {
+    pCurrentPlay->replaceCard(2);
+    switchEnabled();
+    newTurn();
+}

@@ -274,5 +274,4 @@ void Play::replaceCard(int pressedButton)
     default:
         cout << "Error: mode unknown" << endl;
     }
-    pCurrentCard->swap();
 }

@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>PushBuon</string>
     </property>
    </widget>
    <widget class="QPushButton" name="menuButton">
@@ -41,6 +41,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="yesButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -54,6 +57,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="maybeButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -67,6 +73,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="noButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>270</x>
