@@ -121,7 +121,7 @@ void Card::saveCard()
         card->LinkEndChild(rectoEl);
         card->LinkEndChild(versoEl);
         root->LinkEndChild(card);
-        doc.SaveFile(MYPATH);
+        doc.SaveFile(absolutePath.toStdString().c_str());
     }
 }
 
