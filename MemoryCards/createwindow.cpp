@@ -27,12 +27,16 @@ void CreateWindow::createCard()
 {
     std::string recto = ui->rectoEdit->text().toStdString();
     std::string verso = ui->versoEdit->text().toStdString();
-    Card cardAdded = Card(recto,verso);
-    cardAdded.saveCard();
-    ui->rectoEdit->clear();
-    ui->versoEdit->clear();
-    ui->labelText->show();
-    QTimer *timer = new QTimer();
-    timer->connect(timer, SIGNAL(timeout()), ui->labelText, SLOT(hide()));
-    timer->start(1000);
+    std::string collection = ui->collectionEdit->text().toStdString();
+    Card cardAdded = Card(collection,recto,verso);
+    if (cardAdded.saveCard())
+    {
+        ui->rectoEdit->clear();
+        ui->versoEdit->clear();
+        ui->labelText->show();
+        QTimer *timer = new QTimer();
+        timer->connect(timer, SIGNAL(timeout()), ui->labelText, SLOT(hide()));
+        timer->start(1000);
+    }
+
 }

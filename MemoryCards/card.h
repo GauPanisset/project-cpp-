@@ -14,13 +14,14 @@ class Card
     std::string recto;
     std::string verso;
     bool rectoVisible; // Pour savoir quel cote est visible
+    std::string collection;
 
 	public:
-    Card(std::string rectoCard, std::string versoCard);
-    Card(int id); //Charge la carte d'indice id.
+    Card(std::string rectoCard, std::string versoCard, std::string collection);
+    Card(std::string collection, int id); //Charge la carte d'indice id.
     void swap(); // Permet de retourner la carte
     std::string getVisibleFace() const; //Retourne le texte de la face visible.
-    void saveCard(); //Sauvegarde une carde. Ecrit la carte dans le fichier "cards.xml".
+    bool saveCard(); //Sauvegarde une carde. Ecrit la carte dans le fichier "cards.xml".
 };
 
 bool operator<(const Card &c1, const Card &c2);

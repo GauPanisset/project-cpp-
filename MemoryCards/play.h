@@ -16,7 +16,6 @@ typedef struct tm Date;
 
 class Play
 {
-
 	private:
     int mode;
     int currentSubboxNumber;
@@ -24,7 +23,6 @@ class Play
     Card *pCurrentCard;
     Box box;
     std::string name;
-    //Tableau permettant de savoir quels subbox on doit jouer.
 
 	public:
     Play(std::string name, Card *cardsList[], int numberOfCards, int mode);

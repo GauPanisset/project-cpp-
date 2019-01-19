@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <SavedCards>
-    <card id="1">
-        <recto>Paris</recto>
-        <verso>Capitale France</verso>
-    </card>
-    <card id="2">
-        <recto>Berlin</recto>
-        <verso>Capitale Allemagne</verso>
-    </card>
-    <card id="3">
-        <recto>Luxembourg</recto>
-        <verso>Capitale Luxembourg</verso>
-    </card>
-    <card id="4">
-        <recto>Bruxelle</recto>
-        <verso>Capitale Belgique</verso>
-    </card>
-    <card id="5">
-        <recto>Madrid</recto>
-        <verso>Capitale Espagne</verso>
-    </card>
+    <collection name="Test">
+        <card id="1">
+            <recto>Paris</recto>
+            <verso>Capitale France</verso>
+        </card>
+        <card id="2">
+            <recto>Berlin</recto>
+            <verso>Capitale Allemagne</verso>
+        </card>
+        <card id="3">
+            <recto>Luxembourg</recto>
+            <verso>Capitale Luxembourg</verso>
+        </card>
+        <card id="4">
+            <recto>Bruxelle</recto>
+            <verso>Capitale Belgique</verso>
+        </card>
+        <card id="5">
+            <recto>Madrid</recto>
+            <verso>Capitale Espagne</verso>
+        </card>
+    </collection>
 </SavedCards>

@@ -4,6 +4,19 @@
 
 using namespace std;
 
+bool mystrptime(string s, Date* d)
+{
+    if (s.length() == 10)
+    {
+        d->tm_mday = stoi(s.substr(0, 2));
+        d->tm_mon = stoi(s.substr(3, 2));
+        d->tm_year = stoi(s.substr(6, 4));
+        return true;
+    }
+    return false;
+}
+
+
 Play::Play(string n, Card *c[], int noc, int m)
 {
     name = n;
@@ -43,7 +56,7 @@ Play::Play(string n)
             mode = atoi(playEl->Attribute("mode"));
             const char* stringDate = playEl->Attribute("date");
             Date playDate;
-            if (strptime(stringDate, "%d/%m/%Y", &playDate))
+            if (mystrptime(stringDate, &playDate))
             {
 
                 int d = playDate.tm_mday,
@@ -87,7 +100,7 @@ Play::Play(string n)
                 TiXmlElement *cardEl = playEl->FirstChildElement("card");
                 while (cardEl)
                 {
-                    Card *pcard = new Card(atoi(cardEl->Attribute("id")));
+                    Card *pcard = new Card(cardEl->Attribute("collection"), atoi(cardEl->Attribute("id")));
                     if (atoi(cardEl->Attribute("visible")))
                     {
                         pcard->swap();

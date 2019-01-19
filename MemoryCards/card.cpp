@@ -16,9 +16,8 @@ int getLastId()
     if (doc.LoadFile())
     {
         TiXmlElement *root = doc.RootElement();
-        TiXmlElement *lastCard = root->LastChild("card")->ToElement();
         int id;
-        if (lastCard->QueryIntAttribute("id", &id) == TIXML_SUCCESS)
+        if (root->QueryIntAttribute("lastId", &id) == TIXML_SUCCESS)
         {
             return id;
         }
@@ -34,15 +33,16 @@ int getLastId()
     }
 }
 
-Card::Card(string rectoCard, string versoCard)
+Card::Card(string rectoCard, string versoCard, string c)
 {
 	recto = rectoCard;
 	verso = versoCard;
     rectoVisible = true;
     id = getLastId() + 1;
+    collection = c;
 }
 
-Card::Card(int i)
+Card::Card(string c, int i)
 {
     QDir relativePath;
     QString absolutePath = relativePath.absolutePath();
@@ -54,31 +54,42 @@ Card::Card(int i)
     {
         cout<<"File "<<absolutePath.toStdString()<<" is open"<<endl;
         TiXmlElement *root = doc.RootElement();
-        TiXmlElement *cardEl = root->FirstChildElement();
+        TiXmlElement *collectionEl = root->FirstChildElement();
 
-        int otherId = 0;
-        cardEl->QueryIntAttribute("id", &otherId);
-        while(cardEl && otherId != i)
+        while(collectionEl && collectionEl->Attribute("name") != c)
         {
-            cardEl->QueryIntAttribute("id", &otherId);
-            cardEl = cardEl->NextSiblingElement();
+            collectionEl = collectionEl->NextSiblingElement();
         }
-
-        if (cardEl)
+        if (collectionEl)
         {
-            id = i;
-            TiXmlElement *rectoEl = cardEl->FirstChildElement("recto");
-            TiXmlElement *versoEl = cardEl->FirstChildElement("verso");
+            TiXmlElement *cardEl = collectionEl->FirstChildElement();
+            int otherId = 0;
+            cardEl->QueryIntAttribute("id", &otherId);
+            while(cardEl && otherId != i)
+            {
+                cardEl->QueryIntAttribute("id", &otherId);
+                cardEl = cardEl->NextSiblingElement();
+            }
 
-            recto = rectoEl->GetText();
-            verso = versoEl->GetText();
-            rectoVisible = true;
+            if (cardEl)
+            {
+                id = i;
+                TiXmlElement *rectoEl = cardEl->FirstChildElement("recto");
+                TiXmlElement *versoEl = cardEl->FirstChildElement("verso");
+
+                recto = rectoEl->GetText();
+                verso = versoEl->GetText();
+                rectoVisible = true;
+            }
+            else
+            {
+                cout<<"Error : Card not found"<<endl;
+            }
         }
         else
         {
-            cout<<"Error : Card not found"<<endl;
+            cout<<"Error : Collection not found"<<endl;
         }
-
     }
     else
     {
@@ -101,7 +112,7 @@ bool operator<(const Card &c1, const Card &c2)
     return c1.getVisibleFace() < c2.getVisibleFace();
 }
 
-void Card::saveCard()
+bool Card::saveCard()
 {
     QDir relativePath;
     QString absolutePath = relativePath.absolutePath();
@@ -112,16 +123,42 @@ void Card::saveCard()
     if (doc.LoadFile())
     {
         TiXmlElement *root = doc.RootElement();
-        TiXmlElement *card = new TiXmlElement("card");
+
+        TiXmlElement *cardEl = new TiXmlElement("card");
         TiXmlElement *rectoEl = new TiXmlElement("recto");
         TiXmlElement *versoEl = new TiXmlElement("verso");
-        card->SetAttribute("id", id);
+        cardEl->SetAttribute("id", id);
         rectoEl->LinkEndChild(new TiXmlText(recto.c_str()));
         versoEl->LinkEndChild(new TiXmlText(verso.c_str()));
-        card->LinkEndChild(rectoEl);
-        card->LinkEndChild(versoEl);
-        root->LinkEndChild(card);
+        cardEl->LinkEndChild(rectoEl);
+        cardEl->LinkEndChild(versoEl);
+
+        TiXmlElement *collectionEl = root->FirstChildElement();
+        while (collectionEl->Attribute("name") != collection)
+        {
+            collectionEl->NextSiblingElement();
+        }
+        if (collectionEl)
+        {
+            collectionEl->SetAttribute("count", atoi(collectionEl->Attribute("count")) + 1);
+            collectionEl->LinkEndChild(cardEl);
+            root->LinkEndChild(collectionEl);
+        }
+        else
+        {
+            TiXmlElement *collectionEl = new TiXmlElement("collection");
+            collectionEl->SetAttribute("name", collection.c_str());
+            collectionEl->SetAttribute("count", 1);
+            collectionEl->LinkEndChild(cardEl);
+            root->LinkEndChild(collectionEl);
+        }
+
         doc.SaveFile(absolutePath.toStdString().c_str());
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 
