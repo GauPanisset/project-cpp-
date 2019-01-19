@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<SavedCards>
-    <collection name="Test">
+<SavedCards lastId="6">
+    <collection name="Géographie" count="5">
         <card id="1">
             <recto>Paris</recto>
             <verso>Capitale France</verso>
@@ -20,6 +20,12 @@
         <card id="5">
             <recto>Madrid</recto>
             <verso>Capitale Espagne</verso>
+        </card>
+    </collection>
+    <collection name="Science" count="1">
+        <card id="6">
+            <recto>Unité résistance électrique</recto>
+            <verso>Ohm (Unité)</verso>
         </card>
     </collection>
 </SavedCards>

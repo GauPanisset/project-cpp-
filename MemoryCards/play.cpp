@@ -120,7 +120,6 @@ Play::Play(string n)
         {
             cout<<"Error : Play not found"<<endl;
         }
-
     }
     else
     {

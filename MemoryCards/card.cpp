@@ -136,7 +136,8 @@ bool Card::saveCard()
         TiXmlElement *collectionEl = root->FirstChildElement();
         while (collectionEl->Attribute("name") != collection)
         {
-            collectionEl->NextSiblingElement();
+            collectionEl = collectionEl->NextSiblingElement();
+            std::cout<<collectionEl->Attribute("name")<<std::endl;
         }
         if (collectionEl)
         {
