@@ -9,7 +9,6 @@ release/tinyxmlparser.o
 release/playwindow.o
 release/cardbutton.o
 release/createwindow.o
-release/qrc_savefiles.o
 release/moc_mainwindow.o
 release/moc_playwindow.o
 release/moc_cardbutton.o

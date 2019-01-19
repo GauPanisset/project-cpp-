@@ -31,6 +31,7 @@ public:
     QLineEdit *versoEdit;
     QPushButton *okButton;
     QLabel *labelText;
+    QLineEdit *collectionEdit;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -63,10 +64,13 @@ public:
         font.setBold(true);
         font.setWeight(75);
         labelText->setFont(font);
+        collectionEdit = new QLineEdit(centralWidget);
+        collectionEdit->setObjectName(QString::fromUtf8("collectionEdit"));
+        collectionEdit->setGeometry(QRect(30, 210, 311, 21));
         CreateWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(CreateWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 400, 21));
+        menuBar->setGeometry(QRect(0, 0, 400, 22));
         CreateWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(CreateWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
