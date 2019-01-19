@@ -28,7 +28,7 @@ void CreateWindow::createCard()
     std::string recto = ui->rectoEdit->text().toStdString();
     std::string verso = ui->versoEdit->text().toStdString();
     std::string collection = ui->collectionEdit->text().toStdString();
-    Card cardAdded = Card(collection,recto,verso);
+    Card cardAdded = Card(recto, verso, collection);
     if (cardAdded.saveCard())
     {
         ui->rectoEdit->clear();

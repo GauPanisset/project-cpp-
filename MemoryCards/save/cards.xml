@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<SavedCards lastId="6">
+<SavedCards lastId="8">
     <collection name="Géographie" count="5">
         <card id="1">
             <recto>Paris</recto>
@@ -22,10 +22,20 @@
             <verso>Capitale Espagne</verso>
         </card>
     </collection>
-    <collection name="Science" count="1">
+    <collection name="Science" count="2">
         <card id="6">
             <recto>Unité résistance électrique</recto>
             <verso>Ohm (Unité)</verso>
+        </card>
+        <card id="7">
+            <recto>Atome (taille)</recto>
+            <verso>0.1 nm</verso>
+        </card>
+    </collection>
+    <collection name="Histoire" count="1">
+        <card id="8">
+            <recto>Marie Tudor (surnom)</recto>
+            <verso>Marie la Sanglante (Reine)</verso>
         </card>
     </collection>
 </SavedCards>

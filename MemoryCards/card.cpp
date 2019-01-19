@@ -134,26 +134,25 @@ bool Card::saveCard()
         cardEl->LinkEndChild(versoEl);
 
         TiXmlElement *collectionEl = root->FirstChildElement();
-        while (collectionEl->Attribute("name") != collection)
+        while (collectionEl && collectionEl->Attribute("name") != collection)
         {
             collectionEl = collectionEl->NextSiblingElement();
-            std::cout<<collectionEl->Attribute("name")<<std::endl;
         }
         if (collectionEl)
         {
+            std::cout<<collectionEl->Attribute("name")<<std::endl;
             collectionEl->SetAttribute("count", atoi(collectionEl->Attribute("count")) + 1);
-            collectionEl->LinkEndChild(cardEl);
-            root->LinkEndChild(collectionEl);
         }
         else
         {
-            TiXmlElement *collectionEl = new TiXmlElement("collection");
+            collectionEl = new TiXmlElement("collection");
             collectionEl->SetAttribute("name", collection.c_str());
             collectionEl->SetAttribute("count", 1);
-            collectionEl->LinkEndChild(cardEl);
             root->LinkEndChild(collectionEl);
         }
-
+        std::cout<<collectionEl->Attribute("name")<<std::endl;
+        collectionEl->LinkEndChild(cardEl);
+        root->SetAttribute("lastId", id);
         doc.SaveFile(absolutePath.toStdString().c_str());
         return true;
     }
