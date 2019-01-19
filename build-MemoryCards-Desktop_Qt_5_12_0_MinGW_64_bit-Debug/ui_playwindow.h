@@ -49,12 +49,15 @@ public:
         menuButton->setGeometry(QRect(0, 0, 31, 32));
         yesButton = new QPushButton(centralWidget);
         yesButton->setObjectName(QString::fromUtf8("yesButton"));
+        yesButton->setEnabled(false);
         yesButton->setGeometry(QRect(10, 200, 114, 32));
         maybeButton = new QPushButton(centralWidget);
         maybeButton->setObjectName(QString::fromUtf8("maybeButton"));
+        maybeButton->setEnabled(false);
         maybeButton->setGeometry(QRect(140, 200, 114, 32));
         noButton = new QPushButton(centralWidget);
         noButton->setObjectName(QString::fromUtf8("noButton"));
+        noButton->setEnabled(false);
         noButton->setGeometry(QRect(270, 200, 114, 32));
         PlayWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(PlayWindow);
@@ -76,7 +79,7 @@ public:
     void retranslateUi(QMainWindow *PlayWindow)
     {
         PlayWindow->setWindowTitle(QApplication::translate("PlayWindow", "PlayWindow", nullptr));
-        cardButton->setText(QApplication::translate("PlayWindow", "PushButton", nullptr));
+        cardButton->setText(QApplication::translate("PlayWindow", "PushBuon", nullptr));
         menuButton->setText(QApplication::translate("PlayWindow", "=", nullptr));
         yesButton->setText(QApplication::translate("PlayWindow", "Oui", nullptr));
         maybeButton->setText(QApplication::translate("PlayWindow", "Bof", nullptr));

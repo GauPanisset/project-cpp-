@@ -56,9 +56,9 @@
    <widget class="QTabWidget" name="tabSettings">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>130</x>
       <y>20</y>
-      <width>151</width>
+      <width>141</width>
       <height>221</height>
      </rect>
     </property>
@@ -122,7 +122,7 @@
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
