@@ -98,18 +98,19 @@ Play::Play(string n)
             while (boxEl)
             {
                 int boxNumber = atoi(boxEl->Attribute("number"));
-                TiXmlElement *cardEl = playEl->FirstChildElement("card");
+                TiXmlElement *cardEl = boxEl->FirstChildElement("card");
                 while (cardEl)
                 {
-                    Card *pcard = new Card(cardEl->Attribute("collection"), atoi(cardEl->Attribute("id")));
+                    Card *pcard = new Card(atoi(cardEl->Attribute("id")));
                     if (atoi(cardEl->Attribute("visible")))
                     {
                         pcard->swap();
                     }
                     box[pcard] = boxNumber;
-                    if (mode == 1 || dayType[boxNumber])
+                    if (dayType[boxNumber - 1])
                     {
                         cardNotSeen.insert(pcard);
+                        std::cout<<pcard->getVisibleFace()<<std::endl;
                     }
 
                     cardEl = cardEl->NextSiblingElement();
@@ -140,6 +141,7 @@ Card* Play::drawCard()
         if (!cardNotSeen.empty())
         {
             CardSet::iterator it = cardNotSeen.begin();
+            pCurrentCard = *it;
             cardNotSeen.erase(it);
             return *it;
         }
@@ -153,12 +155,26 @@ Card* Play::drawCard()
         {
             if (it->second == currentSubboxNumber)
             {
+                pCurrentCard = it->first;
                 return it->first;
             }
             it++;
         }
         currentSubboxNumber = currentSubboxNumber < 6 ? currentSubboxNumber + 1:1;
-        return nullptr;
+
+        it = box.begin();
+        while (it->second == 7)
+        {
+            it++;
+        }
+        if (it != box.end())
+        {
+            return drawCard();
+        }
+        else
+        {
+            return nullptr;
+        }
     }
     default:
         cout << "Error: mode unknown" << endl;
@@ -178,14 +194,14 @@ void Play::replaceCard(int pressedButton)
         {
             //Bonne réponse
         case 0:
-            if (currentSubboxNumber < 7)
+            if (box[pCurrentCard] < 7)
             {
                 box[pCurrentCard] += 1;
             }
             break;
             //Mauvaise réponse
         case 2:
-            if (currentSubboxNumber > 1)
+            if (box[pCurrentCard] > 1)
             {
                 box[pCurrentCard] -= 1;
             }
@@ -286,5 +302,18 @@ void Play::replaceCard(int pressedButton)
 
     default:
         cout << "Error: mode unknown" << endl;
+    }
+}
+
+size_t Play::numberOfCards()
+{
+    return box.size();
+}
+
+void Play::displayBox()
+{
+    for (Box::iterator it = box.begin(); it != box.end(); it++)
+    {
+        cout<<"Carte : "<<it->first->getVisibleFace()<<" - subbox : "<<it->second<<endl;
     }
 }

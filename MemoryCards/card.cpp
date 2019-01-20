@@ -42,7 +42,7 @@ Card::Card(string rectoCard, string versoCard, string c)
     collection = c;
 }
 
-Card::Card(string c, int i)
+Card::Card(int i)
 {
     QDir relativePath;
     QString absolutePath = relativePath.absolutePath();
@@ -56,19 +56,16 @@ Card::Card(string c, int i)
         TiXmlElement *root = doc.RootElement();
         TiXmlElement *collectionEl = root->FirstChildElement();
 
-        while(collectionEl && collectionEl->Attribute("name") != c)
-        {
-            collectionEl = collectionEl->NextSiblingElement();
-        }
-        if (collectionEl)
+        int otherId = 0;
+
+        while(collectionEl && otherId != i)
         {
             TiXmlElement *cardEl = collectionEl->FirstChildElement();
-            int otherId = 0;
             cardEl->QueryIntAttribute("id", &otherId);
             while(cardEl && otherId != i)
             {
-                cardEl->QueryIntAttribute("id", &otherId);
                 cardEl = cardEl->NextSiblingElement();
+                cardEl->QueryIntAttribute("id", &otherId);
             }
 
             if (cardEl)
@@ -83,12 +80,8 @@ Card::Card(string c, int i)
             }
             else
             {
-                cout<<"Error : Card not found"<<endl;
+                collectionEl = collectionEl->NextSiblingElement();
             }
-        }
-        else
-        {
-            cout<<"Error : Collection not found"<<endl;
         }
     }
     else

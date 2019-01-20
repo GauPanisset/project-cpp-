@@ -143,11 +143,15 @@ void MainWindow::switchPlayWindow()
             name = ui->nameComboBox->currentText();
             pPlay = new Play(name.toStdString());
         }
-
-        pPlayWindow->startPlay(pPlay);
-
         pPlayWindow->show();
-
+        if (pPlay->numberOfCards()>0)
+        {
+            pPlayWindow->startPlay(pPlay);
+        }
+        else
+        {
+            std::cout<<"Can't play with 0 cards"<<std::endl;
+        }
     }
     else {
         setCombobox(QString(MYPLAYS), ui->nameComboBox);

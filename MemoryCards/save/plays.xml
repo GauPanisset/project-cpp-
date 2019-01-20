@@ -6,7 +6,6 @@
 			<card id="2" visible="1"/>
 		</box>
 		<box number="2">
-			<card id="3" visible="0"/>
 		</box>
 		<box number="3">
 			<card id="4" visible="0"/>
@@ -14,6 +13,7 @@
 		<box number="4">
 		</box>
 		<box number="5">
+			<card id="3" visible="1"/>
 		</box>
 		<box number="6">
 		</box>

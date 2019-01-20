@@ -26,15 +26,15 @@ void PlayWindow::toMainWindow()
     emit returnToMainWindow();
 }
 
-void PlayWindow::startPlay(Play *pplay)
+void PlayWindow::startPlay(Play *pPlay)
 {
-    pCurrentPlay = pplay;
+    pCurrentPlay = pPlay;
     newTurn();
-
 }
 
 void PlayWindow::newTurn()
 {
+    //pCurrentPlay->displayBox();
     Card *pc = pCurrentPlay->drawCard();
     if (pc != nullptr) {
         ui->cardButton->setCard(pc);

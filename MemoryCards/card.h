@@ -18,7 +18,7 @@ class Card
 
 	public:
     Card(std::string rectoCard, std::string versoCard, std::string collection);
-    Card(std::string collection, int id); //Charge la carte d'indice id.
+    Card(int id); //Charge la carte d'indice id.
     void swap(); // Permet de retourner la carte
     std::string getVisibleFace() const; //Retourne le texte de la face visible.
     bool saveCard(); //Sauvegarde une carde. Ecrit la carte dans le fichier "cards.xml".
