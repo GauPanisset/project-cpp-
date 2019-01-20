@@ -6,6 +6,7 @@
 #include <QMainWindow>
 #include <QDir>
 #include <QComboBox>
+#include <string>
 
 namespace Ui {
 class MainWindow;

@@ -25,7 +25,7 @@ class Play
     std::string name;
 
 	public:
-    Play(std::string name, Card *cardsList[], int numberOfCards, int mode);
+    Play(std::string name, CardSet cardsSet, int mode);
     Play(std::string name);
     Card* drawCard(); //Sélectionne une carte dans la boite courante et la charge.
     void replaceCard(int pressedButton); //Replace la carte courante dans la bonne subbox.

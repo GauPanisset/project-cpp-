@@ -17,16 +17,17 @@ bool mystrptime(string s, Date* d)
 }
 
 
-Play::Play(string n, Card *c[], int noc, int m)
+Play::Play(string n, CardSet c, int m)
 {
     name = n;
     mode = m;
     currentSubboxNumber = 1;
-    for (int i = 0; i < noc; i++)
+
+    for (CardSet::iterator it = c.begin(); it != c.end(); it++)
     {
         //Toutes les cartes se trouvent dans la première boite au début.
-        box[c[i]] = 1;
-        cardNotSeen.insert(c[i]);
+        box[*it] = 1;
+        cardNotSeen.insert(*it);
     }
 }
 

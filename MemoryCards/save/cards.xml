@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<SavedCards lastId="8">
+<SavedCards lastId="10">
     <collection name="Géographie" count="5">
         <card id="1">
             <recto>Paris</recto>
@@ -36,6 +36,12 @@
         <card id="8">
             <recto>Marie Tudor (surnom)</recto>
             <verso>Marie la Sanglante (Reine)</verso>
+        </card>
+    </collection>
+    <collection name="Maths" count="1">
+        <card id="10">
+            <recto>Nombre d&apos;or</recto>
+            <verso>(1+sqrt(5))/2</verso>
         </card>
     </collection>
 </SavedCards>
