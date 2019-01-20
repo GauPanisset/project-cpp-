@@ -1,9 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include "playwindow.h"
 #include "createwindow.h"
+#include <QMainWindow>
+#include <QDir>
+#include <QComboBox>
 
 namespace Ui {
 class MainWindow;

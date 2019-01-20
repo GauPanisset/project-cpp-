@@ -1,6 +1,35 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QDir>
+
+#define MYCARDS "/MemoryCards/save/cards.xml"
+#define MYPLAYS "/MemoryCards/save/plays.xml"
+
+bool setCombobox(QString filePath, QComboBox *comboBox)
+{
+    QDir relativePath = QDir::current();
+    QString absolutePath = relativePath.absolutePath();
+    absolutePath += filePath;
+
+    TiXmlDocument doc(absolutePath.toStdString().c_str());
+    if (doc.LoadFile())
+    {
+        bool itemAdded = false;
+        TiXmlElement *root = doc.RootElement();
+        TiXmlElement *levelOneEl = root->FirstChildElement();
+        while (levelOneEl)
+        {
+            comboBox->addItem(levelOneEl->Attribute("name"));
+            levelOneEl = levelOneEl->NextSiblingElement();
+            itemAdded = true;
+        }
+        return itemAdded;
+    }
+    else
+    {
+        std::cout<<"Error : "<<filePath.toStdString()<<" ("<<doc.ErrorDesc()<<")"<<std::endl;
+        return false;
+    }
+}
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     pPlayWindow = new PlayWindow();
     pCreateWindow = new CreateWindow();
 
-    //Ceci permet de contourner les problèmes de Path liée build.
+    //Ceci permet de contourner les problèmes de Path liée au build.
     QDir relativePath = QDir::current();
     while(relativePath.absolutePath().contains("/build-MemoryCards"))
     {
@@ -19,20 +48,23 @@ MainWindow::MainWindow(QWidget *parent) :
         relativePath = QDir::current();
     }
 
+    //Remplissage des comboBox.
+    if (!setCombobox(QString(MYPLAYS), ui->nameComboBox))
+    {
+        std::cout<<"Error : no game found"<<std::endl;
+    }
+    if (!setCombobox(QString(MYCARDS), ui->collectionComboBox))
+    {
+        std::cout<<"Error : no collection found"<<std::endl;
+    }
+
+
+
     QObject::connect(ui->playButton, &QPushButton::clicked, this, &MainWindow::switchPlayWindow);
     QObject::connect(pPlayWindow, &PlayWindow::returnToMainWindow, this, &MainWindow::switchPlayWindow);
 
     QObject::connect(ui->createButton, &QPushButton::clicked, this, &MainWindow::switchCreateWindow);
     QObject::connect(pCreateWindow, &CreateWindow::returnToMainWindow, this, &MainWindow::switchCreateWindow);
-
-    /*ui->buttonImmediat->setChecked(true);
-    if(ui->buttonImmediat->isChecked())
-    {
-        ui->buttonDurable->setChecked(false);
-    }
-    else {
-        ui->buttonImmediat->setChecked(true);
-    }*/
 }
 
 MainWindow::~MainWindow()
@@ -82,3 +114,5 @@ void MainWindow::switchCreateWindow()
         this->show();
     }
 }
+
+
