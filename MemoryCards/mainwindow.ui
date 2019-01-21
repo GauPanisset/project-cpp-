@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Create</string>
+     <string>Créer</string>
     </property>
    </widget>
    <widget class="QPushButton" name="playButton">
@@ -37,7 +37,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Play</string>
+     <string>Jouer</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -63,11 +63,11 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tabNew">
      <attribute name="title">
-      <string>New</string>
+      <string>Nouveau</string>
      </attribute>
      <widget class="QRadioButton" name="buttonImmediat">
       <property name="geometry">
@@ -163,7 +163,7 @@
     </widget>
     <widget class="QWidget" name="tabLoad">
      <attribute name="title">
-      <string>Load</string>
+      <string>Charger</string>
      </attribute>
      <widget class="QComboBox" name="nameComboBox">
       <property name="geometry">

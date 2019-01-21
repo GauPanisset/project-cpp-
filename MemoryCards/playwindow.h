@@ -18,7 +18,7 @@ public:
     ~PlayWindow();
 
     void startPlay(Play *pplay);
-
+    void activateButton(bool activated);
 
 private:
     Ui::PlayWindow *ui;

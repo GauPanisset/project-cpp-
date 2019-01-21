@@ -45,8 +45,6 @@ CardSet loadCards(QString collection){
     TiXmlDocument doc(absolutePath.toStdString().c_str());
     if (doc.LoadFile())
     {
-
-
         TiXmlElement *root = doc.RootElement();
         TiXmlElement *collectionEl = root->FirstChildElement();
         while (collectionEl && collectionEl->Attribute("name")!=collection)
@@ -97,11 +95,11 @@ MainWindow::MainWindow(QWidget *parent) :
     //Remplissage des comboBox.
     if (!setCombobox(QString(MYPLAYS), ui->nameComboBox))
     {
-        std::cout<<"Error : no game found"<<std::endl;
+        std::cout<<"Error: no game found"<<std::endl;
     }
     if (!setCombobox(QString(MYCARDS), ui->collectionComboBox))
     {
-        std::cout<<"Error : no collection found"<<std::endl;
+        std::cout<<"Error: no collection found"<<std::endl;
     }
 
     QObject::connect(ui->playButton, &QPushButton::clicked, this, &MainWindow::switchPlayWindow);
@@ -129,6 +127,14 @@ void MainWindow::switchPlayWindow()
         {
             name = ui->nameEdit->text();
             int gameMode = ui->buttonImmediat->isChecked() ? 1 : 0;
+            if (gameMode == 1)
+            {
+                pPlayWindow->activateButton(true);
+            }
+            else
+            {
+                pPlayWindow->activateButton(false);
+            }
             QString collection = ui->collectionComboBox->currentText();
             pPlay = new Play(name.toStdString(), loadCards(collection), gameMode);
         }
@@ -136,6 +142,14 @@ void MainWindow::switchPlayWindow()
         {
             name = ui->nameComboBox->currentText();
             pPlay = new Play(name.toStdString());
+            if (pPlay->getMode() == 1)
+            {
+                pPlayWindow->activateButton(true);
+            }
+            else
+            {
+                pPlayWindow->activateButton(false);
+            }
         }
         pPlayWindow->show();
         if (pPlay->numberOfCards()>0)

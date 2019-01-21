@@ -46,6 +46,11 @@ void PlayWindow::newTurn()
     }
 }
 
+void PlayWindow::activateButton(bool activated)
+{
+    ui->maybeButton->setVisible(activated);
+}
+
 void PlayWindow::switchEnabled()
 {
     ui->cardButton->setEnabled(!ui->cardButton->isEnabled());

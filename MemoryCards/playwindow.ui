@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>PushBuon</string>
+     <string>Default</string>
     </property>
    </widget>
    <widget class="QPushButton" name="menuButton">
@@ -68,8 +68,23 @@
       <height>32</height>
      </rect>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="text">
      <string>Bof</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="noButton">

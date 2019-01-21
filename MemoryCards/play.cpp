@@ -343,6 +343,11 @@ void Play::replaceCard(int pressedButton)
     }
 }
 
+int Play::getMode()
+{
+    return mode;
+}
+
 bool Play::savePlay()
 {
     QDir relativePath;
