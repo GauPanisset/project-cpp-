@@ -20,18 +20,19 @@ Disponible sur Windows, MacOS, Linux.
 ## Comment jouer ?
 
 Lancer l'application. L'utilisateur arrive sur la fenêtre principale sur laquelle il a deux possibilités : 
-1) Créer de nouvelles cartes.
-2) Lancer une partie.
+1. Créer de nouvelles cartes.
+2. Lancer une partie.
 
 **1)** Créer une nouvelle carte, simplement remplir les trois champs présentés : recto, verso, collection.
 Appuyer sur **RETURN** ou sur le bouton de confirmation pour valider. Si la carte est bien créée un message apparait.
 Cliquer sur le bouton menu en haut à droite pour retourner sur la fenêtre principale .
 
 **2)** Lancer une partie, deux choix s'offrent à l'utilisateur : 
-2.1) A partir d'une nouvelle partie.
-2.2) A partir d'une partie sauvegardée.
+1) A partir d'une nouvelle partie.
+2) A partir d'une partie sauvegardée.
 
-**2.1)** Activer l'onglet **Nouveau**. Choisir le mode de jeu (*Immédiat* ou *Durable*, voir plus bas pour les règles de sélection des cartes plus bas) à l'aide des radios boutons. Choisir la collection de cartes à utiliser pour le jeu à l'aide de la liste déroulante. Renseigner le nom de la partie, qui servira à sauvegarder puis retrouver la partie ultérieurement à l'aide du champ dédié. Appuyer sur le bouton **Jouer** pour lancer la partie avec les paramètres précédemment sélectionnés. 
+**2.1)** Activer l'onglet **Nouveau**. Choisir le mode de jeu (*Immédiat* ou *Durable*, voir plus bas pour les règles de sélection des cartes plus bas) à l'aide des radios boutons. Choisir la collection de cartes à utiliser pour le jeu à l'aide de la liste déroulante. Renseigner le nom de la partie, qui servira à sauvegarder puis retrouver la partie ultérieurement à l'aide du champ dédié. Appuyer sur le bouton **Jouer** pour lancer la partie avec les paramètres précédemment sélectionnés.
+
 **2.2)** Activer l'onglet **Charger**. Choisir le nom de la partie à charger à l'aide de la liste déroulante. Appuyer sur le bouton **Jouer** pour lancer la partie choisie.
 
 Après avoir appuyé sur **Jouer** la fenêtre de jeu apparait. Sur celle-ci se trouve un côté de la carte et deux ou trois boutons (en fonction du mode sélectionné). Trouver la face cachée de la carte. Cliquer sur la carte pour révéler cette face cachée. Appuyer sur le bouton **Oui** si l'utilisateur avait la bonne réponse, **Bof** si l'utilisateur avait la bonne réponse mais des doutes ou **Non** si l'utilisateur n'avait pas la bonne réponse (le bouton **Bof** n'est disponible que dans le mode **Immédiat**).
@@ -109,4 +110,3 @@ Ranger toutes les cartes dans la case *1*.
 - Permettre une sélection plus flexible des cartes pour constituer un jeu.
 - Permettre de personnaliser les textes (police de caractères, couleurs, etc...) des faces des cartes.
 - Permettre de définir des faces des cartes avec des images.
-
