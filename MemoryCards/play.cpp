@@ -112,11 +112,11 @@ Play::Play(string n)
                 //Tous les jours
                 dayType[0] = true;
                 //Tous les deux jours
-                dayType[1] = (dNow - d)%2 == 0;
+                dayType[1] = (dNow != d && mNow != m && yNow != y) && (dNow - d)%2 == 0;
                 //Tous les lundis
                 dayType[2] = local->tm_wday == 1;
                 //Chaque premier du mois
-                dayType[3] = dNow == 1 && (dNow - d) == 0;
+                dayType[3] = dNow == 1;
                 //Tous les 3 mois
                 dayType[4] = (mNow - m)%3 == 0 && (dNow - d) == 0;
                 //Tous les 6 mois
