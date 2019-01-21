@@ -29,6 +29,7 @@ class Play
     Play(std::string name);
     Card* drawCard(); //Sélectionne une carte dans la boite courante et la charge.
     void replaceCard(int pressedButton); //Replace la carte courante dans la bonne subbox.
+    bool savePlay();
     size_t numberOfCards(); //Retourne le nombre de cartes dans la boite.
     void displayBox(); //Affiche l'état de la boite.
 };

@@ -61,11 +61,11 @@ Card::Card(int i)
         while(collectionEl && otherId != i)
         {
             TiXmlElement *cardEl = collectionEl->FirstChildElement();
-            cardEl->QueryIntAttribute("id", &otherId);
+            cardEl->Attribute("id", &otherId);
             while(cardEl && otherId != i)
             {
                 cardEl = cardEl->NextSiblingElement();
-                cardEl->QueryIntAttribute("id", &otherId);
+                if (cardEl){cardEl->Attribute("id", &otherId);}
             }
 
             if (cardEl)
@@ -93,6 +93,16 @@ Card::Card(int i)
 void Card::swap()
 {
 	rectoVisible = !rectoVisible;
+}
+
+int Card::getId() const
+{
+    return id;
+}
+
+bool Card::rectoIsVisible() const
+{
+    return rectoVisible;
 }
 
 string Card::getVisibleFace() const

@@ -21,6 +21,8 @@ class Card
     Card(int id); //Charge la carte d'indice id.
     void swap(); // Permet de retourner la carte
     std::string getVisibleFace() const; //Retourne le texte de la face visible.
+    int getId() const;
+    bool rectoIsVisible() const;
     bool saveCard(); //Sauvegarde une carde. Ecrit la carte dans le fichier "cards.xml".
 };
 

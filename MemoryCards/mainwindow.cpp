@@ -58,9 +58,9 @@ CardSet loadCards(QString collection){
             TiXmlElement *cardEl = collectionEl->FirstChildElement();
             while (cardEl)
             {
-                TiXmlElement *recto = cardEl->FirstChildElement("recto");
-                TiXmlElement *verso = cardEl->FirstChildElement("verso");
-                resSet.insert(new Card(recto->GetText(), verso->GetText(), collection.toStdString()));
+                int id;
+                cardEl->Attribute("id", &id);
+                resSet.insert(new Card(id));
                 cardEl = cardEl->NextSiblingElement();
             }
             return resSet;
@@ -121,12 +121,6 @@ void MainWindow::switchPlayWindow()
     if (this->isVisible())
     {
         this->hide();
-
-        /*Card *cardList[3] = {nullptr, nullptr, nullptr};
-        for (int i = 0; i < 3; i++)
-        {
-            cardList[i] = new Card("Test", i+1);
-        }*/
 
         QString name;
         Play *pPlay;

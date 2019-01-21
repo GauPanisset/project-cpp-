@@ -29,6 +29,44 @@ Play::Play(string n, CardSet c, int m)
         box[*it] = 1;
         cardNotSeen.insert(*it);
     }
+
+    QDir relativePath;
+    QString absolutePath = relativePath.absolutePath();
+    QString savePath(MYPATH);
+    absolutePath += savePath;
+
+    TiXmlDocument doc(absolutePath.toStdString().c_str());
+    if (doc.LoadFile())
+    {
+        TiXmlElement *root = doc.RootElement();
+        TiXmlElement *playEl = new TiXmlElement("play");
+        playEl->SetAttribute("name", n.c_str());
+        playEl->SetAttribute("mode", m);
+
+        time_t rawtime;
+        Date * timeinfo;
+        char buffer [13];
+
+        time (&rawtime);
+        timeinfo = localtime (&rawtime);
+        strftime (buffer,13,"%d/%m/%Y",timeinfo);
+
+        playEl->SetAttribute("date", buffer);
+
+        for (int boxNumber = 1; boxNumber < 8; boxNumber++)
+        {
+            TiXmlElement *boxEl = new TiXmlElement("box");
+            boxEl->SetAttribute("number", boxNumber);
+            playEl->LinkEndChild(boxEl);
+        }
+        root->LinkEndChild(playEl);
+        doc.SaveFile(absolutePath.toStdString().c_str());
+
+    }
+    else
+    {
+        cout<<"Can't find plays.xml"<<endl;
+    }
 }
 
 Play::Play(string n)
@@ -102,7 +140,7 @@ Play::Play(string n)
                 while (cardEl)
                 {
                     Card *pcard = new Card(atoi(cardEl->Attribute("id")));
-                    if (atoi(cardEl->Attribute("visible")))
+                    if (atoi(cardEl->Attribute("visible")) == 0)
                     {
                         pcard->swap();
                     }
@@ -110,9 +148,8 @@ Play::Play(string n)
                     if (dayType[boxNumber - 1])
                     {
                         cardNotSeen.insert(pcard);
-                        std::cout<<pcard->getVisibleFace()<<std::endl;
                     }
-
+                    boxEl->RemoveChild(cardEl);
                     cardEl = cardEl->NextSiblingElement();
                 }
                 boxEl = boxEl->NextSiblingElement();
@@ -122,6 +159,7 @@ Play::Play(string n)
         {
             cout<<"Error : Play not found"<<endl;
         }
+        doc.SaveFile(absolutePath.toStdString().c_str());
     }
     else
     {
@@ -302,6 +340,54 @@ void Play::replaceCard(int pressedButton)
 
     default:
         cout << "Error: mode unknown" << endl;
+    }
+}
+
+bool Play::savePlay()
+{
+    QDir relativePath;
+    QString absolutePath = relativePath.absolutePath();
+    QString savePath(MYPATH);
+    absolutePath += savePath;
+
+    TiXmlDocument doc(absolutePath.toStdString().c_str());
+    if (doc.LoadFile())
+    {
+        TiXmlElement *root = doc.RootElement();
+        TiXmlElement *playEl = root->FirstChildElement();
+        while (playEl->Attribute("name") != name)
+        {
+            playEl = playEl->NextSiblingElement();
+        }
+        if (playEl)
+        {
+            TiXmlElement *boxEl = playEl->FirstChildElement();
+            for (int boxNumber = 1; boxNumber< 8; boxNumber++)
+            {
+                for(Box::iterator it = box.begin(); it != box.end(); it++)
+                {
+                    if (it->second == boxNumber)
+                    {
+                        TiXmlElement *cardEl = new TiXmlElement("card");
+                        cardEl->SetAttribute("id", it->first->getId());
+                        cardEl->SetAttribute("visible", it->first->rectoIsVisible()?1:0);
+                        boxEl->LinkEndChild(cardEl);
+                        //box.erase(it);
+                    }
+                }
+                boxEl = boxEl->NextSiblingElement();
+            }
+        }
+        else
+        {
+            cout<<"Play not found"<<endl;
+        }
+        doc.SaveFile(absolutePath.toStdString().c_str());
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 
